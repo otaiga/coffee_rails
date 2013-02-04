@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Coffee::Application.load_tasks
+CoffeeServer::Application.load_tasks
