@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20130204222232) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "openning_times", :force => true do |t|
+  create_table "opening_times", :force => true do |t|
     t.string   "weekday"
     t.string   "open_time"
     t.string   "close_time"

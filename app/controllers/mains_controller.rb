@@ -6,7 +6,7 @@ class MainsController < ApplicationController
     @food_menu = FoodMenu.all
     @drinks_menu = DrinkMenu.all
     @events = Event.all
-    @openning_times = OpenningTime.all
+    @openning_times = OpeningTime.all
   end
 
 end
