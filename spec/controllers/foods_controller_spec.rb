@@ -9,7 +9,7 @@ describe FoodsController do
     it "should be able to access index" do
       get :index
       response.should be_success
-      assigns(:food_items).should == FoodMenu.all
+      assigns(:categories).should == FoodMenu.avail_categories
     end
 
   end
