@@ -5,4 +5,8 @@ class FoodMenu < ActiveRecord::Base
     return unless cat
     self.where(category: cat)
   end
+
+  def self.avail_categories
+    self.all.map {|a| a.category }.uniq
+  end
 end

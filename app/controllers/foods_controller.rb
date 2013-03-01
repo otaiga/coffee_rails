@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
 
   def index
-    @categories = FoodMenu.all.map {|a| a.category }.uniq
+    @categories = FoodMenu.avail_categories
   end
 
   def edit
