@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
 
   def index
-    @food_items = FoodMenu.all
+    @categories = FoodMenu.all.map {|a| a.category }.uniq
   end
 
   def edit
@@ -22,11 +22,17 @@ class FoodsController < ApplicationController
   end
 
   def update
-
+    @food_item = FoodMenu.find(params[:id])
+    if @food_item.update_attributes(params[:food_menu])
+      redirect_to foods_path
+    end
   end
 
   def destroy
-
+    @food_item = FoodMenu.find(params[:id])
+    if @food_item.destroy
+      redirect_to foods_path
+    end
   end
 
 end
