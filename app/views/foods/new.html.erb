@@ -1,0 +1,7 @@
+<h1>Create a new Food Item </h1>
+
+<%= form_for @food_item, :url => foods_path, :method => :post do |f| %>
+  <%= f.label :name %><br/>
+  <%= f.text_field :name %><br />
+  <%= f.submit %>
+<% end %>

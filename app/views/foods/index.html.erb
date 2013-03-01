@@ -1,0 +1,15 @@
+<h1>Foods Menu</h1>
+
+<% if !@food_items.empty? %>
+  <ul>
+    <% @food_items.each do |food| %>
+      <li><%= food.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+ <b>You have no food items created </b>
+<% end %>
+<hr>
+<%= link_to "Create a new food item", new_food_path %>
+
+
