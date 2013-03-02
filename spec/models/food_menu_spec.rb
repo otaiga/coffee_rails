@@ -23,4 +23,21 @@ describe FoodMenu do
     food_item = FoodMenu.create!(@food_item)
     expect {food_item.destroy}.to change(FoodMenu, :count).by(-1)
   end
+
+  it "should be able to provide categories for food items" do
+    FoodMenu.create!(@food_item)
+    FoodMenu.avail_categories.should == ["jacket_potatoes"]
+  end
+
+  it "should be able to get data for category provided" do
+    FoodMenu.create!(@food_item)
+    FoodMenu.for_cat("jacket_potatoes").should == [FoodMenu.last]
+  end
+
+  it "should provide hased response for food items" do
+    FoodMenu.create!(@food_item)
+    FoodMenu.hashed_response.should == {
+      jacket_potatoes: ["tuna"]
+    }
+  end
 end
