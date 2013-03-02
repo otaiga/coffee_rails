@@ -1,3 +1,4 @@
+#FoodMenu model for all food items
 class FoodMenu < ActiveRecord::Base
   attr_accessible :category, :name, :price
 

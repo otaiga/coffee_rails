@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  
+
   it "should be able to create a user" do
     user = User.new(email: "test_user@example.com", password: "password")
     user.save.should == true

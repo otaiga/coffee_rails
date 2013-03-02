@@ -1,4 +1,7 @@
+#Food controller to be used by admin
+#To create food items
 class FoodsController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @categories = FoodMenu.avail_categories
