@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MainsController do
 
   context "as an authenticated user" do
-    
+
     before(:each) do
       sign_in given_user
     end
