@@ -1,3 +1,4 @@
+#User model for admin users
 class User < ActiveRecord::Base
 
   devise :database_authenticatable, :trackable, :validatable

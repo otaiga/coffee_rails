@@ -1,0 +1,29 @@
+<h1>Foods Menu</h1>
+
+<% if !@categories.empty? %>
+  <b>Categories listed : <%= @categories.count %> </b>
+  <% @categories.each do |cat| %>
+    <h3><%= cat.capitalize %></h3>
+    <table>
+      <thread>
+        <tr>
+          <th>Name</th><th>Price</th>
+        </tr>
+      </thread>
+      <% FoodMenu.for_cat(cat).each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= food.price %></td>
+          <td><%= link_to "edit", edit_food_path(food) %></td>
+          <td><%= link_to "remove", food_path(food), :method => :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% else %>
+ <b>You have no food items created </b>
+<% end %>
+<hr>
+<%= link_to "Create a new food item", new_food_path %>
+
+
