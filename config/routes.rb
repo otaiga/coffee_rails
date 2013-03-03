@@ -5,6 +5,7 @@ CoffeeServer::Application.routes.draw do
   devise_for :users
 
   resources :foods
+  resources :drinks
 
   namespace :api, :as => '' do
     scope "v1" do
