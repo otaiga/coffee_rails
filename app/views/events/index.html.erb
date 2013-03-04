@@ -1,0 +1,23 @@
+<h1>Events</h1>
+
+<% if !@events.empty? %>
+  <table>
+    <thread>
+      <tr>
+        <th>Title</th><th>Description</th>
+      </tr>
+    </thread>
+      <% @events.each do |event| %>
+      <tr>
+        <td><%= event.title %></td>
+        <td><%= event.description[0..10] + "..."%></td>
+        <td><%= link_to "edit", edit_event_path(event) %></td>
+        <td><%= link_to "remove", event_path(event), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+ <b>You have no Events created </b>
+<% end %>
+<hr>
+<%= link_to "Create a new Event", new_event_path %>
