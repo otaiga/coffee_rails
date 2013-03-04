@@ -1,0 +1,27 @@
+<h1>Drinks Menu</h1>
+
+<% if !@categories.empty? %>
+  <b>Categories listed : <%= @categories.count %> </b>
+  <% @categories.each do |cat| %>
+    <h3><%= cat.capitalize %></h3>
+    <table>
+      <thread>
+        <tr>
+          <th>Name</th><th>Price</th>
+        </tr>
+      </thread>
+      <% DrinkMenu.for_cat(cat).each do |drink| %>
+        <tr>
+          <td><%= drink.name %></td>
+          <td><%= drink.price %></td>
+          <td><%= link_to "edit", edit_drink_path(drink) %></td>
+          <td><%= link_to "remove", drink_path(drink), :method => :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% else %>
+ <b>You have no drink items created </b>
+<% end %>
+<hr>
+<%= link_to "Create a new drink item", new_drink_path %>

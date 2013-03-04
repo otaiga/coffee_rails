@@ -29,15 +29,15 @@ private
     collection.map {|a| a.name}
   end
 
-##Not Used atm < but keeping in case I want it again
-  def self.exceptions_json(json_obj)
-    return unless json_obj
-    json_obj.as_json :except => [
-      :id,
-      :category,
-      :created_at,
-      :price,
-      :updated_at
-    ]
-  end
+# ##Not Used atm < but keeping in case I want it again
+#   def self.exceptions_json(json_obj)
+#     return unless json_obj
+#     json_obj.as_json :except => [
+#       :id,
+#       :category,
+#       :created_at,
+#       :price,
+#       :updated_at
+#     ]
+#   end
 end
