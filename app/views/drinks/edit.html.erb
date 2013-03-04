@@ -1,1 +1,11 @@
-edit.html.erb
+<h1>Edit Drink Item</h1>
+
+<%= form_for @drink_item, :url => drink_path, :method => :put do |f| %>
+  <%= f.label :category %><br/>
+  <%= f.text_field :category %><br />
+  <%= f.label :name %><br/>
+  <%= f.text_field :name %><br />
+  <%= f.label :price %><br/>
+  <%= f.text_field :price %><br />
+  <%= f.submit "update" %>
+<% end %>
