@@ -1,6 +1,6 @@
 <h1>Create a new Drink Item </h1>
 
-<%= form_for @drink_item, :url => foods_path, :method => :post do |f| %>
+<%= form_for @drink_item, :url => drinks_path, :method => :post do |f| %>
   <%= f.label :category %><br/>
   <%= f.text_field :category %><br />
   <%= f.label :name %><br/>

@@ -10,7 +10,7 @@
           <th>Name</th><th>Price</th>
         </tr>
       </thread>
-      <% DrinkMenuw.for_cat(cat).each do |drink| %>
+      <% DrinkMenu.for_cat(cat).each do |drink| %>
         <tr>
           <td><%= drink.name %></td>
           <td><%= drink.price %></td>
