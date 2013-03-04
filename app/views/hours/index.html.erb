@@ -1,0 +1,24 @@
+<h1>Opening Times</h1>
+
+<% if !@opening_times.empty? %>
+  <table>
+    <thread>
+      <tr>
+        <th>Weekday</th><th>Open</th><th>Close</th>
+      </tr>
+    </thread>
+      <% @opening_times.each do |o_time| %>
+      <tr>
+        <td><%= o_time.weekday %></td>
+        <td><%= o_time.open_time %></td>
+        <td><%= o_time.close_time %></td>
+        <td><%= link_to "edit", edit_hour_path(o_time) %></td>
+        <td><%= link_to "remove", hour_path(o_time), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+ <b>You have no Opening times created </b>
+<% end %>
+<hr>
+<%= link_to "Create a new Opening time", new_hour_path %>

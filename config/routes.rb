@@ -6,6 +6,7 @@ CoffeeServer::Application.routes.draw do
 
   resources :foods
   resources :drinks
+  resources :hours
 
   namespace :api, :as => '' do
     scope "v1" do

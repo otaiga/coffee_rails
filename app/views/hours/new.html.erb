@@ -1,0 +1,11 @@
+<h1>Create a new Opening Time </h1>
+
+<%= form_for @opening_time, :url => hours_path, :method => :post do |f| %>
+  <%= f.label :weekday %><br/>
+  <%= f.text_field :weekday %><br />
+  <%= f.label :open_time %><br/>
+  <%= f.text_field :open_time %><br />
+  <%= f.label :close_time %><br/>
+  <%= f.text_field :close_time %><br />
+  <%= f.submit %>
+<% end %>
