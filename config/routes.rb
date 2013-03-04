@@ -10,6 +10,7 @@ CoffeeServer::Application.routes.draw do
   namespace :api, :as => '' do
     scope "v1" do
        get "food_menu" => "food#index"
+       get "drink_menu" => "drink#index"
     end
   end
 
