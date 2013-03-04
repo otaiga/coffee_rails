@@ -12,6 +12,7 @@ CoffeeServer::Application.routes.draw do
     scope "v1" do
        get "food_menu" => "food#index"
        get "drink_menu" => "drink#index"
+       get "opening_times" => "hour#index"
     end
   end
 
