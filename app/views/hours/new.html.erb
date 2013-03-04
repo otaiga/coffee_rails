@@ -1,7 +1,7 @@
 <h1>Create a new Opening Time </h1>
 
 <%= form_for @opening_time, :url => hours_path, :method => :post do |f| %>
-  <%= f.label :weekday %><br/>
+  <%= f.label :weekday, "Week Day: (example: Monday-Friday, or Saturday)"%><br/>
   <%= f.text_field :weekday %><br />
   <%= f.label :open_time %><br/>
   <%= f.text_field :open_time %><br />
