@@ -6,11 +6,13 @@ CoffeeServer::Application.routes.draw do
 
   resources :foods
   resources :drinks
+  resources :hours
 
   namespace :api, :as => '' do
     scope "v1" do
        get "food_menu" => "food#index"
        get "drink_menu" => "drink#index"
+       get "opening_times" => "hour#index"
     end
   end
 
