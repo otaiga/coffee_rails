@@ -13,7 +13,7 @@
       <% DrinkMenu.for_cat(cat).each do |drink| %>
         <tr>
           <td><%= drink.name %></td>
-          <td><%= drink.price %></td>
+          <td><%= f_price(drink.price) %></td>
           <td><%= link_to "edit", edit_drink_path(drink) %></td>
           <td><%= link_to "remove", drink_path(drink), :method => :delete %></td>
         </tr>
