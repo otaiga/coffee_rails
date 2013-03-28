@@ -13,6 +13,7 @@ CoffeeServer::Application.routes.draw do
        get "drink_menu" => "drink#index"
        get "opening_times" => "hour#index"
        get "events" => "event#index"
+       post "friday_prize" => "friday_prize#create"
     end
   end
 

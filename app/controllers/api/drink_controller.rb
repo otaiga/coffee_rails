@@ -1,4 +1,4 @@
-#Food controller for api requests
+#Drink controller for api requests
 class Api::DrinkController <  Api::BaseController
 
   def index
