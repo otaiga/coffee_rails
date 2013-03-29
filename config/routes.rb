@@ -9,11 +9,12 @@ CoffeeServer::Application.routes.draw do
 
   namespace :api, :as => '' do
     scope "v1" do
-       get "food_menu" => "food#index"
-       get "drink_menu" => "drink#index"
-       get "opening_times" => "hour#index"
-       get "events" => "event#index"
-       post "friday_prize" => "friday_prize#create"
+      get "food_menu" => "food#index"
+      get "drink_menu" => "drink#index"
+      get "opening_times" => "hour#index"
+      get "events" => "event#index"
+      get "friday_prize" => "friday_prize#index"
+      post "friday_prize" => "friday_prize#create"
     end
   end
 

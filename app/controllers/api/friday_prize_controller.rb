@@ -2,10 +2,21 @@
 # Allows only to be called on friday's
 # Need's to capture email and unique (model check) -  Prize?
 class Api::FridayPrizeController <  Api::BaseController
-  before_filter :checks_passed?
+  before_filter :checks_passed?, :only => [:create]
+
+  #check to see if friday prize is enabled.
+  def index
+    #TODO model settings? - to check for prize enabled?
+    stub_response = {prize_status: "enabled"}
+    render :status=>200, :json=> stub_response
+  end
 
   def create
+    #TODO - Get Prize
     get_prize
+    #TODO - remove the below as a stub for now.
+    @stub_response = {prize: "1 Small Coffee"}
+    render :status=>200, :json=> @stub_response
   end
 
 private
@@ -19,7 +30,9 @@ private
     if check_email? && check_friday?
       return true
     else
-      return false
+      render :status => 406, :json=>{
+        :errors => ["Email must be present and should be Friday"]
+      }
     end
   end
 

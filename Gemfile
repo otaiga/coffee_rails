@@ -16,6 +16,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'brakeman'
   gem 'cane'
+  gem 'timecop'
 end
 
 group :production do
