@@ -11,5 +11,4 @@ class Api::BaseController < ApplicationController
       return
     end
   end
-
 end

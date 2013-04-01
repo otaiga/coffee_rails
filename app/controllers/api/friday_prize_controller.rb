@@ -3,17 +3,18 @@
 # Need's to capture email and unique (model check) -  Prize?
 class Api::FridayPrizeController <  Api::BaseController
   before_filter :checks_passed?, :only => [:create]
+  before_filter :check_status, :only => [:create]
 
-  #check to see if friday prize is enabled.
   def index
-    #TODO model settings? - to check for prize enabled?
-    stub_response = {prize_status: "enabled"}
-    render :status=>200, :json=> stub_response
+    prize_status = $redis.get("coffee_prize_stat")
+    response = {prize_status: prize_status}
+    render :status=>200, :json=> response
   end
 
   def create
-    if get_prize
-      @response = {prize: "1 Small Coffee"}
+    if !get_prize == "already taken" || !get_prize == false
+      update_prize_status
+      @response = {prize: get_prize}
     else
       message = "Sorry better luck next time"
       @response = {fail_message: message}
@@ -23,11 +24,27 @@ class Api::FridayPrizeController <  Api::BaseController
 
 private
 
+  def check_status
+    prize_status = $redis.get("coffee_prize_stat")
+    if prize_status == "enabled"
+      return true
+    else
+      render :status => 406, :json=>{
+        :errors => ["Prize Status not enabled"]
+      }
+  end
+
   def get_prize
-    #TODO - retieve prize from model?
     #Array of 99 empty entries and one with the prize.
-    stub_prize = "1 Small Coffee"
-    chance_array.push(stub_prize).shuffle.sample
+    prize = $redis.get("coffee_prize")
+    unless prize.nil?
+      chance_array.push(stub_prize).shuffle.sample
+    end
+  end
+
+  def update_prize_status
+    $redis.set("coffee_prize_stat", "disabled")
+    $redis.set("coffee_prize", "already taken")
   end
 
   def chance_array(a_count = 99)

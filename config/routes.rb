@@ -7,6 +7,9 @@ CoffeeServer::Application.routes.draw do
   resources :hours
   resources :events
 
+  get "toggle_prize_status" => "mains#toggle_prize_status"
+  post "update_prize" => "mains#update_prize"
+
   namespace :api, :as => '' do
     scope "v1" do
       get "food_menu" => "food#index"

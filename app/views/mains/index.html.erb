@@ -6,4 +6,16 @@
 <li><%= link_to "Event Menu", events_path %></li>
 <li><%= link_to "Opening Times Menu", hours_path %></li>
 
+<hr>
+
+<h2> Friday Prize Settings </h2>
+<li>
+  Prize Status : <b><%= @prize_status %></b>
+  <%= link_to "Toggle", toggle_prize_status_path %>
+</li>
+<li>
+  <%= form_tag('/update_prize') do %>
+    Prize: <%= text_field_tag :prize_name,  @prize %>
+  <% end %>
+</li>
 
