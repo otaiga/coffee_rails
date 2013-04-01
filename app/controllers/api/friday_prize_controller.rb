@@ -12,18 +12,27 @@ class Api::FridayPrizeController <  Api::BaseController
   end
 
   def create
-    #TODO - Get Prize
-    get_prize
-    #TODO - remove the below as a stub for now.
-    @stub_response = {prize: "1 Small Coffee"}
-    render :status=>200, :json=> @stub_response
+    if get_prize
+      @response = {prize: "1 Small Coffee"}
+    else
+      message = "Sorry better luck next time"
+      @response = {fail_message: message}
+    end
+    render :status=>200, :json=> @response
   end
 
 private
 
   def get_prize
-    #TODO - get a prize using array - 100 in 1 chance?
+    #TODO - retieve prize from model?
     #Array of 99 empty entries and one with the prize.
+    stub_prize = "1 Small Coffee"
+    chance_array.push(stub_prize).shuffle.sample
+  end
+
+  def chance_array(a_count = 99)
+    #Setting to 100 in 1
+    chance_array = Array.new( a_count, false )
   end
 
   def checks_passed?

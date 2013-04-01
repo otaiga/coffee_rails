@@ -33,7 +33,7 @@ describe Api::FridayPrizeController do
         Timecop.freeze(Date.parse("05/04/2013"))
         post :create, :email => "testuser@example.com", :format => :json
         reply = JSON.parse(response.body)
-        reply["prize"].should == "1 Small Coffee"
+        reply.should have(1).items
       end
     end
   end
