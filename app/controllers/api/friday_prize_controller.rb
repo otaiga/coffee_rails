@@ -69,7 +69,7 @@ private
   end
 
   def checks_passed?
-    if check_email? && check_friday?
+    if check_email?
       return true
     else
       render :status => 406, :json=>{
