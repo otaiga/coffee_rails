@@ -34,4 +34,6 @@ CoffeeServer::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  REDIS = Redis.new(:host => 'localhost', :port => 6379)
 end

@@ -6,7 +6,7 @@ class Api::FridayPrizeController <  Api::BaseController
   before_filter :check_status, :only => [:create]
 
   def index
-    prize_status = $redis.get("coffee_prize_stat")
+    prize_status = REDIS.get("coffee_prize_stat")
     response = {prize_status: prize_status}
     render :status=>200, :json=> response
   end
@@ -25,7 +25,7 @@ class Api::FridayPrizeController <  Api::BaseController
 private
 
   def check_status
-    prize_status = $redis.get("coffee_prize_stat")
+    prize_status = REDIS.get("coffee_prize_stat")
     if prize_status == "enabled"
       return true
     else
@@ -36,15 +36,15 @@ private
 
   def get_prize
     #Array of 99 empty entries and one with the prize.
-    prize = $redis.get("coffee_prize")
+    prize = REDIS.get("coffee_prize")
     unless prize.nil?
       chance_array.push(stub_prize).shuffle.sample
     end
   end
 
   def update_prize_status
-    $redis.set("coffee_prize_stat", "disabled")
-    $redis.set("coffee_prize", "already taken")
+    REDIS.set("coffee_prize_stat", "disabled")
+    REDIS.set("coffee_prize", "already taken")
   end
 
   def chance_array(a_count = 99)
