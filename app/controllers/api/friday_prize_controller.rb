@@ -6,7 +6,12 @@ class Api::FridayPrizeController <  Api::BaseController
   before_filter :check_status, :only => [:create]
 
   def index
-    prize_status = REDIS.get("coffee_prize_stat")
+    prize_record = Prize.first
+    if prize_record
+      prize_status = prize_record.prize_stat
+    else
+      prize_status = "disabled"
+    end
     response = {prize_status: prize_status}
     render :status=>200, :json=> response
   end
@@ -25,26 +30,37 @@ class Api::FridayPrizeController <  Api::BaseController
 private
 
   def check_status
-    prize_status = REDIS.get("coffee_prize_stat")
-    if prize_status == "enabled"
-      return true
+    prize_record = Prize.first
+    if prize_record
+      prize_status = prize_record.prize_stat
+      if prize_status == "enabled"
+        return true
+      end
     else
       render :status => 406, :json=>{
         :errors => ["Prize Status not enabled"]
       }
+    end
   end
 
   def get_prize
     #Array of 99 empty entries and one with the prize.
-    prize = REDIS.get("coffee_prize")
-    unless prize.nil?
-      chance_array.push(stub_prize).shuffle.sample
+    prize_record = Prize.first
+    if prize_record
+      prize = prize_record.prize
+      unless prize.nil?
+        chance_array.push(stub_prize).shuffle.sample
+      end
+    else
+      return false
     end
   end
 
   def update_prize_status
-    REDIS.set("coffee_prize_stat", "disabled")
-    REDIS.set("coffee_prize", "already taken")
+    Prize.first.update_attributes(
+      prize_stat: "disabled",
+      prize: "already taken"
+      )
   end
 
   def chance_array(a_count = 99)

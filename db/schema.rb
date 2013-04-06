@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204222232) do
+ActiveRecord::Schema.define(:version => 20130406090342) do
 
   create_table "drink_menus", :force => true do |t|
     t.string   "category"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20130204222232) do
     t.string   "weekday"
     t.string   "open_time"
     t.string   "close_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "prizes", :force => true do |t|
+    t.string   "prize_stat"
+    t.string   "prize"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -50,6 +50,7 @@ describe Api::FridayPrizeController do
 
     context "with json format" do
       it "should respond with status of prize_day enabled" do
+        Prize.create!(prize_stat: "enabled")
         get :index, :format => :json
         reply = JSON.parse(response.body)
         reply["prize_status"].should == "enabled"
