@@ -2,7 +2,7 @@
 # Allows only to be called on friday's
 # Need's to capture email and unique (model check) -  Prize?
 class Api::FridayPrizeController <  Api::BaseController
-  before_filter :checks_passed?, :only => [:create]
+  # before_filter :checks_passed?, :only => [:create]
   before_filter :check_status, :only => [:create]
 
   def index
