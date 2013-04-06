@@ -10,4 +10,5 @@ rails server - coffee time
 
 ## POST request
 
-`curl -H "Content-type: application/json" -X POST -d '{"email":"test_user@somewhere.com"}' https://pure-gorge-1027.herokuapp.com/api/v1/friday_prize.json`
+`curl -H "Content-type: application/json" -X POST -d '{"email":"test_user@somewhere.com"}' 
+https://pure-gorge-1027.herokuapp.com/api/v1/friday_prize.json`
