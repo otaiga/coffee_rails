@@ -1,8 +1,5 @@
 # Friday Prize controller for api requests
-# Allows only to be called on friday's
-# Need's to capture email and unique (model check) -  Prize?
 class Api::FridayPrizeController <  Api::BaseController
-  # before_filter :checks_passed?, :only => [:create]
   before_filter :check_status, :only => [:create]
 
   def index
@@ -18,12 +15,16 @@ class Api::FridayPrizeController <  Api::BaseController
 
   def create
     result = get_prize
-    if !result == "already taken" || !result == false
-      update_prize_status
-      @response = {prize: result}
-    else
+    case result
+    when "already taken"
+      message = "Sorry prize has been won today"
+      @response = {taken_message: message}
+    when false
       message = "Sorry better luck next time"
       @response = {fail_message: message}
+    else
+      update_prize_status
+      @response = {prize: result}
     end
     render :status=>200, :json=> @response
   end
@@ -67,34 +68,6 @@ private
   def chance_array(a_count = 29)
     #Setting to 100 in 1
     chance_array = Array.new( a_count, false )
-  end
-
-  def checks_passed?
-    if check_email?
-      return true
-    else
-      render :status => 406, :json=>{
-        :errors => ["Email must be present and should be Friday"]
-      }
-    end
-  end
-
-  def check_email?
-    email = params[:email]
-    if correct_format?(email)
-      return true
-    else
-      return false
-    end
-  end
-
-  def check_friday?
-    day = Date.today.strftime("%A")
-    if day == "Friday"
-      return true
-    else
-      return false
-    end
   end
 
   def correct_format?(email)
