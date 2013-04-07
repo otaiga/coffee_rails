@@ -63,7 +63,7 @@ private
       )
   end
 
-  def chance_array(a_count = 99)
+  def chance_array(a_count = 29)
     #Setting to 100 in 1
     chance_array = Array.new( a_count, false )
   end
