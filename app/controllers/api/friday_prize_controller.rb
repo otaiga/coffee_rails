@@ -17,9 +17,10 @@ class Api::FridayPrizeController <  Api::BaseController
   end
 
   def create
-    if !get_prize == "already taken" || !get_prize == false
+    result = get_prize
+    if !result == "already taken" || !result == false
       update_prize_status
-      @response = {prize: get_prize}
+      @response = {prize: result}
     else
       message = "Sorry better luck next time"
       @response = {fail_message: message}
