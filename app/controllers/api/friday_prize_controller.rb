@@ -49,7 +49,7 @@ private
     if prize_record
       prize = prize_record.prize
       unless prize.nil?
-        chance_array.push(stub_prize).shuffle.sample
+        chance_array.push(prize).shuffle.sample
       end
     else
       return false
