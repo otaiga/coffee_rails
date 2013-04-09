@@ -1,6 +1,6 @@
 # Friday Prize controller for api requests
 class Api::FridayPrizeController <  Api::BaseController
-  before_filter :check_status, :prize_available? :only => [:create]
+  before_filter :check_status, :prize_available?, :only => [:create]
 
   def index
     prize_record = Prize.first
@@ -31,13 +31,18 @@ class Api::FridayPrizeController <  Api::BaseController
 
 private
 
+ #TODO - refactor this
   def check_status
     prize_record = Prize.first
     if prize_record
       prize_status = prize_record.prize_stat
       prize = prize_record.prize
-      if prize_status == "enabled" and prize
+      if prize_status == "enabled" && prize
         return true
+      else
+        render :status => 406, :json=>{
+          :errors => ["Prize Status not enabled"]
+        }
       end
     else
       render :status => 406, :json=>{
