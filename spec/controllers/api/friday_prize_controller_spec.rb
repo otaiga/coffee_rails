@@ -13,6 +13,22 @@ describe Api::FridayPrizeController do
       end
     end
 
+    context "api checks" do
+
+      it "should check for presence of an api key" do
+        post :create, :format => :json
+        expected_msg = "HTTP Token: Access denied."
+        JSON.parse(response.body)["errors"].first.should == expected_msg
+      end
+
+      it "should check for correct api key" do
+        request.env['HTTP_X_API_TOKEN'] = "wrong_key"
+        post :create, :format => :json
+        expected_msg = "HTTP Token: Access denied."
+        JSON.parse(response.body)["errors"].first.should == expected_msg
+      end
+    end
+
     context "with json format" do
       before(:each) do
         @token = "TestAPIKey"
@@ -78,7 +94,7 @@ describe Api::FridayPrizeController do
       before(:each) do
         @token = "TestAPIKey"
       end
-      
+
       it "should respond with status of prize_day enabled" do
         Prize.create!(prize_stat: "enabled")
         request.env['HTTP_X_API_TOKEN'] = @token

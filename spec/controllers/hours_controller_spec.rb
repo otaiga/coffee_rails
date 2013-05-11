@@ -8,7 +8,7 @@ describe HoursController do
 
     before(:all) do
       @test_data = {
-        weekday: "test_day",
+        weekday: "Monday",
         open_time: "09:00",
         close_time: "14:00"
       }
@@ -45,6 +45,19 @@ describe HoursController do
       delete :destroy, id: OpeningTime.last.id
       response.should redirect_to hours_path
       OpeningTime.all.empty?.should == true
+    end
+
+    it "should not be able to create same weekday entries" do
+      OpeningTime.create!(@test_data)
+      same = OpeningTime.new(@test_data)
+      same.save.should == false
+    end
+
+    it "should display remaing days to create and edit" do
+      OpeningTime.create!(@test_data)
+      get :new
+      date_array = assigns(:days)
+      date_array.include?("Monday").should == false
     end
 
   end
