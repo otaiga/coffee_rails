@@ -1,8 +1,10 @@
 <h1>Create a new Opening Time </h1>
 
+<p> If you want to select closed, then leave the <b>Open Time</b> blank and type <b>closed</b> in the <b>Close Time</b>
+
 <%= form_for @opening_time, :url => hours_path, :method => :post do |f| %>
-  <%= f.label :weekday, "Week Day: (example: Monday-Friday, or Saturday)"%><br/>
-  <%= f.text_field :weekday %><br />
+  <%= f.label :weekday %><br/>
+  <%= f.select :weekday, @days %><br />
   <%= f.label :open_time %><br/>
   <%= f.text_field :open_time %><br />
   <%= f.label :close_time %><br/>

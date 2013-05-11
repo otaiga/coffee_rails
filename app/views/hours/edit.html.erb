@@ -1,13 +1,15 @@
 <h1>Edit Opening Time</h1>
 
-<%= form_for @opening_time, :url => hour_path, :method => :put do |f| %>
-  <%= f.label :weekday, "Week Day: (example: Monday-Friday, or Saturday)"%><br/>
-  <%= f.text_field :weekday %><br />
+<p> If you want to select closed, then leave the <b>Open Time</b> blank and type <b>closed</b> in the <b>Close Time</b>
+
+<%= form_for @opening_time, :url => hour_path do |f| %>
+  <%= f.label :weekday %><br/>
+  <%= f.select :weekday, @days %><br />
   <%= f.label :open_time %><br/>
   <%= f.text_field :open_time %><br />
   <%= f.label :close_time %><br/>
   <%= f.text_field :close_time %><br />
-  <%= f.submit "update" %>
+  <%= f.submit %>
 <% end %>
 <br>
 <%= link_to "Back Times View", hours_path %>
