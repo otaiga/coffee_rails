@@ -9,10 +9,13 @@ class HoursController < ApplicationController
 
   def edit
     @opening_time = OpeningTime.find(params[:id])
+    editable = sort_days << @opening_time.weekday
+    @days = editable
   end
 
   def new
     @opening_time = OpeningTime.new
+    @days = sort_days
   end
 
   def create
@@ -36,6 +39,15 @@ class HoursController < ApplicationController
     if @opening_time.destroy
       redirect_to hours_path
     end
+  end
+
+private
+
+  def sort_days
+    exclude = OpeningTime.all.map {|day| day.weekday}
+    days = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
+    exclude.each {|x| days.delete(x)}
+    days
   end
 
 end
