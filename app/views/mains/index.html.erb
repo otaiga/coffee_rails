@@ -10,12 +10,13 @@
 
 <h2> Friday Prize Settings </h2>
 <li>
-  Prize Status : <b><%= @prize_status %></b>
+  Prize Status : <b><span class="label <%= get_label(@prize_status)%>"><%= @prize_status %></span></b>
   <%= link_to "Toggle", toggle_prize_status_path %>
 </li>
+<br>
 <li>
   <%= form_tag('/update_prize') do %>
-    Prize: <%= text_field_tag :prize_name,  @prize %>
+    Prize: <%= text_field_tag :prize_name,  @prize, :placeholder => "Enter a prize" %>
     <%= submit_tag "Submit" %>
   <% end %>
 </li>
