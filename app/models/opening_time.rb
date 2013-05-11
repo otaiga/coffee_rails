@@ -2,6 +2,7 @@
 class OpeningTime < ActiveRecord::Base
   attr_accessible :weekday, :open_time, :close_time
   validates_uniqueness_of :weekday
+  validates_presence_of :weekday
 
   def self.hashed_response
     hash_resp = {}

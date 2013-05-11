@@ -53,6 +53,11 @@ describe HoursController do
       same.save.should == false
     end
 
+    it "should not be able to create a entry without weekday" do
+      same = OpeningTime.new(open_time: "09:00",close_time: "14:00")
+      same.save.should == false
+    end
+
     it "should display remaing days to create and edit" do
       OpeningTime.create!(@test_data)
       get :new
